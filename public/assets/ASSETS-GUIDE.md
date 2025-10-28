@@ -1,30 +1,59 @@
 # Assets Guide for Wujha Landing
 
-This directory should contain all image assets and the brochure PDF for the Wujha Landing page.
+This directory contains all image assets organized by section for the Wujha Landing page.
+
+## Folder Structure
+
+```
+assets/
+├── header/           # Header section assets
+├── hero/            # Hero section assets
+├── project-highlights/  # Project highlights section assets
+├── why-invest/      # Why invest section assets
+├── about-us/        # About us section assets
+├── offerings/       # Offerings section assets
+├── contact-us/      # Contact us section assets
+└── modals/          # Modal assets (QR codes, etc.)
+```
 
 ## Required Asset Files
 
-### Hero Section
+### Header Section (`/header/`)
+- **logo.png** - Company logo (recommended size: 200x60px)
+- **logo-white.png** - White version of logo for dark backgrounds
+
+### Hero Section (`/hero/`)
 - **hero-main.png** - Large curved modern building (main hero image, recommended size: 1400x1000px)
 - **hero-floating.png** - Smaller square building/property detail (recommended size: 400x400px)
 - **hero-modal-img.png** - Brochure preview image for modal (recommended size: 800x1000px)
 
-### Why Invest Section
+### Project Highlights Section (`/project-highlights/`)
+- **map-placeholder.png** - Google Maps placeholder or custom map image
+- **location-icon.png** - Location pin icon
+- **distance-icon.png** - Distance measurement icon
+
+### Why Invest Section (`/why-invest/`)
 - **whyinvest-1.png** - Lifestyle/modern living image (recommended size: 1000x800px)
 - **whyinvest-2.png** - Location/strategic position image (recommended size: 1000x800px)
 
-### About Us Section
+### About Us Section (`/about-us/`)
 - **aboutus-tablet.png** - Tablet mockup or overview image (recommended size: 800x1000px)
+- **team-photo.png** - Team or company photo (optional)
 
-### Offerings Section
+### Offerings Section (`/offerings/`)
 - **offering-1.png** - Amenity image 1 (e.g., Infinity Pool) (recommended size: 800x600px)
 - **offering-2.png** - Amenity image 2 (e.g., Gym) (recommended size: 800x600px)
 - **offering-3.png** - Amenity image 3 (e.g., Gardens) (recommended size: 800x600px)
 
-### Call Modal
-- **qr-call.png** - QR code that triggers call to (+968) 80033666 (recommended size: 400x400px)
+### Contact Us Section (`/contact-us/`)
+- **office-photo.png** - Office building photo
+- **location-map.png** - Office location map
 
-### Downloadable Content
+### Modals (`/modals/`)
+- **qr-call.png** - QR code that triggers call to (+968) 80033666 (recommended size: 400x400px)
+- **brochure-preview.png** - Brochure preview image
+
+### Downloadable Content (Root Level)
 - **Uptown-Brochure.pdf** - Property brochure PDF file
 
 ## Image Requirements
@@ -79,10 +108,23 @@ The `Uptown-Brochure.pdf` should include:
 - Investment benefits
 - Payment plans (if applicable)
 
+## Path References
+
+- **Header assets**: `/assets/header/filename.ext`
+- **Hero assets**: `/assets/hero/filename.ext`
+- **Project highlights**: `/assets/project-highlights/filename.ext`
+- **Why invest**: `/assets/why-invest/filename.ext`
+- **About us**: `/assets/about-us/filename.ext`
+- **Offerings**: `/assets/offerings/filename.ext`
+- **Contact us**: `/assets/contact-us/filename.ext`
+- **Modals**: `/assets/modals/filename.ext`
+- **PDF files**: `/assets/filename.pdf` (root level)
+
 ## Notes
 
-- All paths in the code use `/assets/filename.ext`
+- All paths in the code use `/assets/section/filename.ext`
 - Images are loaded from the `public` directory
 - Ensure all filenames match exactly (case-sensitive)
 - Test all images load correctly before deployment
+- Each folder contains a `.gitkeep` file to ensure folders are tracked by git
 
