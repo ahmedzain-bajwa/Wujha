@@ -1,0 +1,152 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-48);
+}
+
+.heading {
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 60px);
+  align-items: center;
+  background-color: var(--color-white);
+  border-radius: var(--radius-16);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.cardLeft .cardImage {
+  order: 1;
+}
+
+.cardLeft .cardContent {
+  order: 2;
+  padding: var(--spacing-40);
+}
+
+.cardRight .cardImage {
+  order: 2;
+}
+
+.cardRight .cardContent {
+  order: 1;
+  padding: var(--spacing-40);
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chips {
+  position: absolute;
+  bottom: var(--spacing-24);
+  left: var(--spacing-24);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+}
+
+.chip {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-8);
+  font-size: var(--font-regular-xs-size);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+.cardTitle {
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cardDescription {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .cardLeft .cardImage,
+  .cardRight .cardImage {
+    order: 1;
+  }
+
+  .cardLeft .cardContent,
+  .cardRight .cardContent {
+    order: 2;
+    padding: var(--spacing-32);
+  }
+
+  .cardImage {
+    min-height: 350px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .content {
+    gap: var(--spacing-32);
+  }
+
+  .cardsContainer {
+    gap: var(--spacing-40);
+  }
+
+  .cardContent {
+    padding: var(--spacing-24) !important;
+  }
+
+  .cardImage {
+    min-height: 280px;
+  }
+
+  .chips {
+    bottom: var(--spacing-16);
+    left: var(--spacing-16);
+  }
+
+  .chip {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+

@@ -1,0 +1,188 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-40);
+}
+
+.heading {
+  text-align: center;
+  color: var(--color-white);
+}
+
+.subtext {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+}
+
+.chip {
+  background-color: var(--color-brand-primary);
+  color: var(--color-white);
+  padding: var(--spacing-12) var(--spacing-24);
+  border-radius: var(--radius-8);
+  font-size: var(--font-regular-s-size);
+  font-weight: 600;
+}
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-24);
+}
+
+.carouselButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-white);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.carouselButton:hover {
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  transform: scale(1.1);
+}
+
+.carouselContent {
+  flex: 1;
+  overflow: hidden;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-24);
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-16);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.cardImage {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .cardImage img {
+  transform: scale(1.1);
+}
+
+.cardContent {
+  padding: var(--spacing-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.cardTitle {
+  font-size: var(--font-regular-l-size);
+  font-weight: 600;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.cardSubtitle {
+  font-size: var(--font-regular-s-size);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.indicators {
+  display: flex;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-16);
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicatorActive {
+  background-color: var(--color-brand-primary);
+  width: 32px;
+  border-radius: 6px;
+}
+
+.footnote {
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .carouselButton {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .content {
+    gap: var(--spacing-24);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .carouselButton {
+    display: none;
+  }
+
+  .carouselContent {
+    width: 100%;
+  }
+
+  .cardImage {
+    height: 200px;
+  }
+
+  .cardContent {
+    padding: var(--spacing-16);
+  }
+}
+

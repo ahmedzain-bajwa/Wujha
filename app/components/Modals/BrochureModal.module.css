@@ -1,0 +1,187 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--spacing-16);
+  overflow-y: auto;
+}
+
+.modal {
+  background-color: var(--color-white);
+  border-radius: var(--radius-16);
+  max-width: 1000px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--spacing-16);
+  right: var(--spacing-16);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  background-color: var(--color-brand-primary);
+  transform: rotate(90deg);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  min-height: 500px;
+}
+
+.imageSection {
+  background: linear-gradient(135deg, #e8e8e8 0%, #f8f8f8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-40);
+  border-radius: var(--radius-16) 0 0 var(--radius-16);
+}
+
+.imageSection img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 500px;
+}
+
+.formSection {
+  padding: clamp(32px, 5vw, 60px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+.title {
+  font-size: var(--font-h3-size);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-regular-m-size);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+.phoneWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.phoneLabel {
+  font-size: var(--font-regular-s-size);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.required {
+  color: var(--color-brand-primary);
+  margin-left: 4px;
+}
+
+.phoneContainer {
+  width: 100%;
+}
+
+.phoneInput {
+  width: 100% !important;
+  height: 48px !important;
+  font-family: 'Gelasio', serif !important;
+  font-size: var(--font-regular-m-size) !important;
+  border: 1px solid var(--color-border-grey) !important;
+  border-radius: var(--radius-8) !important;
+}
+
+.phoneInput:focus {
+  border-color: var(--color-brand-primary) !important;
+  box-shadow: 0 0 0 3px rgba(198, 65, 48, 0.1) !important;
+}
+
+.phoneButton {
+  border: 1px solid var(--color-border-grey) !important;
+  border-radius: var(--radius-8) 0 0 var(--radius-8) !important;
+  background-color: var(--color-grey-light) !important;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .imageSection {
+    border-radius: var(--radius-16) var(--radius-16) 0 0;
+    padding: var(--spacing-24);
+    min-height: 250px;
+  }
+
+  .imageSection img {
+    max-height: 300px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .overlay {
+    padding: 0;
+  }
+
+  .modal {
+    max-height: 100vh;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .formSection {
+    padding: var(--spacing-24);
+  }
+
+  .imageSection {
+    border-radius: 0;
+    min-height: 200px;
+  }
+
+  .closeButton {
+    top: var(--spacing-12);
+    right: var(--spacing-12);
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+  }
+}
+
