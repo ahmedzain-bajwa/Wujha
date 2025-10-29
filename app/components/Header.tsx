@@ -45,8 +45,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterClick, onCallClick }) 
     <header className={`${styles.header} ${!isVisible ? styles.hidden : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <div className={styles.logoText}>WUJHA</div>
-          <div className={styles.logoSubtext}>DEVELOPMENT</div>
+          <img src="/assets/header/logo.svg" alt="Wujha Development" className={styles.logoImage} />
         </div>
 
         {/* Desktop Navigation */}
