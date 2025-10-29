@@ -7,6 +7,7 @@
 .heading {
   text-align: center;
   color: var(--text-primary);
+  font-size: 48px;
 }
 
 .cardsContainer {
@@ -19,17 +20,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(24px, 4vw, 60px);
-  align-items: center;
-  background-color: var(--color-white);
-  border-radius: var(--radius-16);
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  align-items: stretch;
 }
 
 .cardLeft .cardImage {
@@ -38,7 +29,6 @@
 
 .cardLeft .cardContent {
   order: 2;
-  padding: var(--spacing-40);
 }
 
 .cardRight .cardImage {
@@ -47,14 +37,14 @@
 
 .cardRight .cardContent {
   order: 1;
-  padding: var(--spacing-40);
 }
 
 .cardImage {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 400px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: var(--radius-16);
 }
 
 .cardImage img {
@@ -87,16 +77,69 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-24);
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 500px;
+  padding-top: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f0f0f0;
+  color: #666666;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.badge svg {
+  width: 16px;
+  height: 16px;
+  color: #666666;
 }
 
 .cardTitle {
   color: var(--text-primary);
   margin: 0;
+  margin-top: 0;
 }
 
 .cardDescription {
   color: var(--text-secondary);
   line-height: 1.8;
+  margin: 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #222222;
+  color: var(--color-white);
+  padding: 16px 32px;
+  border-radius: var(--radius-8);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Tablet */
@@ -113,7 +156,6 @@
   .cardLeft .cardContent,
   .cardRight .cardContent {
     order: 2;
-    padding: var(--spacing-32);
   }
 
   .cardImage {
@@ -132,7 +174,7 @@
   }
 
   .cardContent {
-    padding: var(--spacing-24) !important;
+    padding: 0 !important;
   }
 
   .cardImage {

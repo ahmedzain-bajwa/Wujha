@@ -7,34 +7,34 @@ import styles from './Offerings.module.css';
 
 const offerings = [
   {
-    image: '/assets/offering-1.png',
-    title: 'Infinity Pool & Lounge',
-    subtitle: 'Relax and unwind in style',
+    image: '/assets/offerings/cinema.png',
+    title: 'Cinema',
+    subtitle: 'This small private cinema can be fully reserved and seats about 12 VIP guests, plus one large premium sofa.',
   },
   {
-    image: '/assets/offering-2.png',
-    title: 'State-of-the-Art Gym',
-    subtitle: 'Stay fit with premium equipment',
+    image: '/assets/offerings/pool.png',
+    title: 'Pool',
+    subtitle: 'Pool access is on the lower floor beside other sports facilities, with locker rooms and restrooms connected by stairs and elevators.',
   },
   {
-    image: '/assets/offering-3.png',
-    title: 'Landscaped Gardens',
-    subtitle: 'Natural beauty at your doorstep',
+    image: '/assets/offerings/gym.png',
+    title: 'Gym',
+    subtitle: 'Two gyms are provided—one shared and one for women—each with its own locker room, sauna, and jacuzzi.',
   },
   {
-    image: '/assets/offering-1.png',
-    title: 'Co-Working Spaces',
-    subtitle: 'Modern workspaces for professionals',
+    image: '/assets/offerings/childcare.png',
+    title: 'Childcare',
+    subtitle: 'During working hours, children will be taken care of by trained caregivers.',
   },
   {
-    image: '/assets/offering-2.png',
-    title: 'Kids Play Area',
-    subtitle: 'Safe and fun environment for children',
+    image: '/assets/offerings/firstaid.png',
+    title: 'First Aid Room',
+    subtitle: 'Located within the sports facility, this area supports quick first aid and has ground-floor parking access for fast transfer to emergency care.',
   },
   {
-    image: '/assets/offering-3.png',
-    title: '24/7 Security',
-    subtitle: 'Your safety is our priority',
+    image: '/assets/offerings/commercial.png',
+    title: 'Commercial Area',
+    subtitle: 'Mix of retail options on the longest boulevard in Muscat.',
   },
 ];
 
@@ -58,7 +58,7 @@ export const Offerings: React.FC = () => {
   };
 
   return (
-    <SectionWrapper id="offerings" backgroundColor="var(--color-black)">
+    <SectionWrapper id="offerings">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -66,12 +66,12 @@ export const Offerings: React.FC = () => {
         transition={{ duration: 0.6 }}
         className={styles.content}
       >
-        <h2 className={`h3 ${styles.heading}`}>Offerings and Amenities</h2>
-        <p className={`regular-l ${styles.subtext}`}>
-          Discover a range of world-class amenities designed to enhance your lifestyle. From fitness and wellness to leisure and entertainment, Uptown Muscat has it all.
-        </p>
+        <div className={styles.container}>
+          <h2 className={`h3 ${styles.heading}`}>Amenities That Elevate Living</h2>
 
-        <div className={styles.chip}>Amenities That Elevate Living</div>
+          <p className={`regular-l ${styles.subtext}`}>
+            Discover a range of world-class amenities designed to enhance your lifestyle. From fitness and wellness to leisure and entertainment, Uptown Muscat has it all.
+          </p>
 
         <div className={styles.carouselContainer}>
           <button
@@ -79,7 +79,9 @@ export const Offerings: React.FC = () => {
             className={`${styles.carouselButton} ${styles.carouselButtonPrev}`}
             aria-label="Previous"
           >
-            ←
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
 
           <div className={styles.carouselContent}>
@@ -112,7 +114,9 @@ export const Offerings: React.FC = () => {
             className={`${styles.carouselButton} ${styles.carouselButtonNext}`}
             aria-label="Next"
           >
-            →
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
         </div>
 
@@ -127,11 +131,10 @@ export const Offerings: React.FC = () => {
           ))}
         </div>
 
-        <p className={`regular-xs ${styles.footnote}`}>
-          *Amenities and facilities are subject to availability and may vary by unit type.
-        </p>
+        </div>
       </motion.div>
     </SectionWrapper>
   );
 };
+
 

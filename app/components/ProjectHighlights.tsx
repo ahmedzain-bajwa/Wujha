@@ -6,10 +6,22 @@ import { SectionWrapper } from './shared/SectionWrapper';
 import styles from './ProjectHighlights.module.css';
 
 const highlights = [
-  { time: '5 MIN', location: 'Al Rusayl Industrial Area' },
-  { time: '10 MIN', location: 'Al Mawaleh – City Center' },
-  { time: '15 MIN', location: 'Oman International Exhibition' },
-  { time: '20 MIN', location: 'Muscat International Airport' },
+  {
+    time: '5 MIN',
+    location: 'Al Rusayl Industrial Area',
+  },
+  {
+    time: '10 MIN',
+    location: 'Al Mawaleh - City Center',
+  },
+  {
+    time: '15 MIN',
+    location: 'Oman International Exhibition',
+  },
+  {
+    time: '20 MIN',
+    location: 'Muscat International Airport',
+  },
 ];
 
 export const ProjectHighlights: React.FC = () => {
@@ -22,34 +34,26 @@ export const ProjectHighlights: React.FC = () => {
         transition={{ duration: 0.6 }}
         className={styles.content}
       >
-        <h2 className={`h3 ${styles.heading}`}>Project Highlights</h2>
-        <p className={`regular-l ${styles.subtext}`}>
-          Strategically located in Knowledge Oasis Muscat, Uptown offers unparalleled connectivity to key destinations, ensuring convenience for residents and tenants alike.
-        </p>
-
+        <h2 className={styles.heading}>Project Highlights</h2>
         <div className={styles.highlightsContainer}>
-          <div className={styles.highlightsLeft}>
-            <h3 className={styles.highlightsTitle}>Convenient Accessibility</h3>
-          </div>
-
-          <div className={styles.highlightsRight}>
-            {highlights.map((item, index) => (
-              <React.Fragment key={index}>
-                <motion.div
-                  className={styles.highlightItem}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className={styles.time}>{item.time}</div>
-                  <div className={styles.arrow}>→</div>
-                  <div className={styles.location}>{item.location}</div>
-                </motion.div>
-                {index < highlights.length - 1 && <div className={styles.divider} />}
-              </React.Fragment>
-            ))}
-          </div>
+          {highlights.map((item, index) => (
+            <React.Fragment key={index}>
+              <motion.div
+                className={styles.highlightItem}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className={styles.time}>
+                  <span className={styles.timeNumber}>{item.time.split(' ')[0]}</span>
+                  <span className={styles.timeUnit}>{' ' + item.time.split(' ').slice(1).join(' ')}</span>
+                </div>
+                <div className={styles.location}>{item.location}</div>
+              </motion.div>
+              {index < highlights.length - 1 && <div className={styles.separator} />}
+            </React.Fragment>
+          ))}
         </div>
 
         <motion.div
@@ -74,4 +78,3 @@ export const ProjectHighlights: React.FC = () => {
     </SectionWrapper>
   );
 };
-

@@ -5,14 +5,15 @@
 }
 
 .mainHeading {
-  text-align: center;
-  color: var(--text-primary);
+  text-align: left;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-32);
 }
 
 .container {
   background-color: var(--color-accent-a);
   border-radius: var(--radius-16);
-  padding: clamp(40px, 6vw, 80px);
+  padding: 40px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
@@ -37,8 +38,9 @@
 
 .textContent {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-32);
+  flex-direction: row;
+  gap: var(--spacing-40);
+  justify-content: space-between;
 }
 
 .office {
@@ -66,8 +68,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-16);
-  padding-top: var(--spacing-16);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .phone,

@@ -7,18 +7,18 @@ import styles from './WhyInvest.module.css';
 
 const investmentReasons = [
   {
-    title: 'Lifestyle that Inspires',
+    title: 'The best way to find your perfect home',
     description:
-      'Experience a community designed for modern living, where every amenity and space is crafted to elevate your daily life. From state-of-the-art facilities to beautifully landscaped surroundings, Uptown Muscat blends comfort with sophistication.',
-    image: '/assets/whyinvest-1.png',
-    chips: ['Modern Living', 'Premium Amenities', 'Community'],
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    image: '/assets/why-invest/01.jpeg',
+    chipLabel: 'Reason 1',
   },
   {
-    title: 'Strategic Location in Knowledge City',
+    title: 'The best way to find your perfect home',
     description:
-      'Located at the heart of Knowledge Oasis Muscat, Uptown places you at the center of innovation and growth. Benefit from proximity to leading educational institutions, business hubs, and cultural landmarks, all within minutes of your doorstep.',
-    image: '/assets/whyinvest-2.png',
-    chips: ['Prime Location', 'Innovation Hub', 'Growth Area'],
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    image: '/assets/why-invest/02.jpeg',
+    chipLabel: 'Reason 2',
   },
 ];
 
@@ -46,17 +46,23 @@ export const WhyInvest: React.FC = () => {
             >
               <div className={styles.cardImage}>
                 <img src={reason.image} alt={reason.title} />
-                <div className={styles.chips}>
-                  {reason.chips.map((chip, chipIndex) => (
-                    <span key={chipIndex} className={styles.chip}>
-                      {chip}
-                    </span>
-                  ))}
-                </div>
               </div>
               <div className={styles.cardContent}>
+                <div className={styles.badge}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <span>{reason.chipLabel}</span>
+                </div>
                 <h3 className={`h3 ${styles.cardTitle}`}>{reason.title}</h3>
                 <p className={`regular-m ${styles.cardDescription}`}>{reason.description}</p>
+                <button className={styles.button}>
+                  <span>Start exploring</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
               </div>
             </motion.div>
           ))}
@@ -65,4 +71,3 @@ export const WhyInvest: React.FC = () => {
     </SectionWrapper>
   );
 };
-

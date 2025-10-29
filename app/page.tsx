@@ -49,11 +49,11 @@ export default function Home() {
 
       <ProjectHighlights />
 
+      <Offerings />
+
       <WhyInvest />
 
       <AboutUs />
-
-      <Offerings />
 
       <ContactUs />
 
