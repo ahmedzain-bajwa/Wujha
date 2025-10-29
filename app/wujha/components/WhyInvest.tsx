@@ -7,16 +7,16 @@ import styles from './WhyInvest.module.css';
 
 const investmentReasons = [
   {
-    title: 'The best way to find your perfect home',
+    title: 'Lifestyle that Inspires',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      'Uptown Muscat is more than a residence - it\'s a nature-inspired community that sparks creativity. With green spaces, open surroundings, and the lively Uptown Boulevard at its center, it balances work and life. Shops, a social club, playgrounds, and family areas all support convenience, connection, and memorable moments.',
     image: '/assets/why-invest/01.jpeg',
     chipLabel: 'Reason 1',
   },
   {
-    title: 'The best way to find your perfect home',
+    title: 'Strategic Location in Knowledge City',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      'Located in Knowledge Oasis Muscat (KOM) - Oman\'s leading tech park managed by @madaynoman - Uptown sits at the center of the country\'s digital growth. KOM hosts 200+ companies, from local SMEs and education hubs to global brands, powered by a skilled, multilingual workforce. For residents and investors, it offers direct access to opportunity, innovation, and a thriving knowledge economy.',
     image: '/assets/why-invest/02.jpeg',
     chipLabel: 'Reason 2',
   },

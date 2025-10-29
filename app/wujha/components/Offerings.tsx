@@ -88,6 +88,19 @@ export const Offerings: React.FC = () => {
         className={styles.content}
       >
         <div className={styles.container}>
+          {/* Dynamic background image */}
+          <motion.div
+            key={currentIndex}
+            className={styles.backgroundImage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            style={{
+              backgroundImage: `url(${offerings[currentIndex].image})`,
+            }}
+          />
+
           <h2 className={`h3 ${styles.heading}`}>Amenities That Elevate Living</h2>
 
           <p className={`regular-l ${styles.subtext}`}>

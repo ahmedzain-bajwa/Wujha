@@ -46,12 +46,30 @@
   z-index: 0;
 }
 
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(8px);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+}
+
 .heading {
   text-align: center;
   color: var(--color-white);
   margin: 0;
   position: relative;
   z-index: 1;
+  font-size: 48px;
 }
 
 .subtext {

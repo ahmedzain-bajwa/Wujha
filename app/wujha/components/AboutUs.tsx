@@ -49,7 +49,7 @@ export const AboutUs: React.FC = () => {
         >
           <div className={styles.badge}>
             <span className={styles.starIcon}>★</span>
-            <span>Get in touch</span>
+            <span>About Us</span>
           </div>
           <h2 className={styles.heading}>Why WUJHA?</h2>
           <div className={styles.paragraph}>
