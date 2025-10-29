@@ -5,7 +5,7 @@
 }
 
 .container {
-  background-color: var(--color-accent-a);
+  background: linear-gradient(135deg, #222222 0%, #2a2a2a 50%, #1a1a1a 100%);
   border-radius: var(--radius-16);
   padding: 40px;
   padding-left: 40px;
@@ -17,19 +17,50 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-40);
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: radial-gradient(ellipse at bottom center, rgba(198, 65, 48, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(198, 65, 48, 0.08) 0%, transparent 50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .heading {
   text-align: center;
   color: var(--color-white);
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .subtext {
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto var(--spacing-48) auto;
+  position: relative;
+  z-index: 1;
 }
 
 .chip {
@@ -50,6 +81,7 @@
   align-items: center;
   gap: var(--spacing-24);
   padding: 0;
+  z-index: 1;
 }
 
 
@@ -118,11 +150,10 @@
   background-color: transparent;
   border-radius: 24px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
   position: relative;
   flex-shrink: 0;
-  width: 600px;
+  width: 520px;
   transform-origin: center;
 }
 
@@ -147,18 +178,13 @@
 
 @media (min-width: 1600px) {
   .card {
-    width: 700px;
+    width: 600px;
   }
-}
-
-.cardActive:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 .cardImage {
   width: 100%;
-  height: 500px;
+  height: 450px;
   overflow: hidden;
   position: relative;
   border-radius: 24px;
@@ -168,7 +194,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
   border-radius: 24px;
 }
 
@@ -181,14 +206,6 @@
   height: 60%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
   pointer-events: none;
-}
-
-.cardActive:hover .cardImage img {
-  transform: scale(1.05);
-}
-
-.cardActive:hover .cardImage::after {
-  opacity: 0.85;
 }
 
 .cardContent {
@@ -222,6 +239,8 @@
   display: flex;
   gap: var(--spacing-12);
   margin-top: var(--spacing-16);
+  position: relative;
+  z-index: 1;
 }
 
 .indicator {
@@ -256,7 +275,7 @@
   }
 
   .card {
-    width: 500px;
+    width: 450px;
   }
 
   .carouselButton {
@@ -265,7 +284,7 @@
   }
 
   .cardImage {
-    height: 450px;
+    height: 400px;
   }
 }
 
