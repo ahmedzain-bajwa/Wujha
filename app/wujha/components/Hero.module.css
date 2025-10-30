@@ -4,7 +4,7 @@
   position: relative;
   height: calc(70vh + 200px);
   min-height: calc(70vh + 200px);
-  margin-top: var(--spacing-48);
+  margin-top: calc(var(--spacing-16) + 60px + var(--spacing-16));
   margin-bottom: var(--spacing-48);
   margin-left: 70px;
   margin-right: 70px;
@@ -211,7 +211,10 @@
   .hero {
     height: calc(70vh + 200px);
     min-height: calc(70vh + 200px);
-    margin: var(--spacing-32);
+    margin-top: calc(var(--spacing-16) + 60px + var(--spacing-16));
+    margin-left: var(--spacing-32);
+    margin-right: var(--spacing-32);
+    margin-bottom: var(--spacing-32);
   }
 
   .content {
@@ -229,7 +232,10 @@
   .hero {
     height: calc(60vh + 200px);
     min-height: calc(60vh + 200px);
-    margin: var(--spacing-16);
+    margin-top: calc(var(--spacing-16) + 60px + var(--spacing-16));
+    margin-left: var(--spacing-16);
+    margin-right: var(--spacing-16);
+    margin-bottom: var(--spacing-16);
   }
 
   .container {
