@@ -17,6 +17,18 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadBrochure }) => {
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.container}>
+        {/* Minimal Snowfall Effect */}
+        <div className={styles.snowfall}>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+          <div className={styles.snowflake}></div>
+        </div>
+
         {/* Main Building Image */}
         <motion.div
           className={styles.imageContainer}

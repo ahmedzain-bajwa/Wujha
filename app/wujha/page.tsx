@@ -8,6 +8,7 @@ import { WhyInvest } from './components/WhyInvest';
 import { AboutUs } from './components/AboutUs';
 import { Offerings } from './components/Offerings';
 import { ContactUs } from './components/ContactUs';
+import { Footer } from './components/Footer';
 import { BrochureModal } from './components/Modals/BrochureModal';
 import { CallModal } from './components/Modals/CallModal';
 
@@ -56,6 +57,8 @@ export default function Home() {
       <AboutUs />
 
       <ContactUs />
+
+      <Footer />
 
       <BrochureModal
         isOpen={isBrochureModalOpen}

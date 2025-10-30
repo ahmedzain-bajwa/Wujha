@@ -1,113 +1,72 @@
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-48);
-}
-
-.mainHeading {
-  text-align: left;
-  color: var(--color-white);
-  margin-bottom: var(--spacing-32);
-}
-
-.container {
-  background-color: var(--color-accent-a);
-  border-radius: var(--radius-16);
-  padding: 40px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-
-.infoSection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-32);
-}
-
-.infoBlock {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-24);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .heading {
-  font-size: clamp(18px, 2vw, 20px);
+  font-size: clamp(36px, 5vw, 48px);
   font-weight: 700;
-  color: var(--color-white);
-  margin: 0;
+  color: #222222;
+  margin: 0 0 48px 0;
+  text-align: center;
 }
 
-.textContent {
-  display: flex;
-  flex-direction: row;
-  gap: var(--spacing-40);
-  justify-content: space-between;
-}
-
-.office {
+.form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-12);
+  gap: 24px;
 }
 
-.officeTitle {
-  font-size: var(--font-regular-s-size);
-  font-weight: 700;
-  color: var(--color-brand-primary);
-  margin: 0;
-  letter-spacing: 0.5px;
-}
-
-.address {
-  font-size: var(--font-regular-s-size);
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.8;
-  margin: 0;
-}
-
-.contactDetails {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-16);
-}
-
-.phone,
-.email {
-  font-size: var(--font-regular-m-size);
+.submitButton {
+  margin-top: 16px;
+  padding: 16px 32px;
+  background-color: var(--color-brand-primary);
   color: var(--color-white);
-  text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 16px;
   font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
-.phone:hover,
-.email:hover {
-  color: var(--color-brand-primary);
+.submitButton:hover {
+  background-color: #d94a32;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(198, 65, 48, 0.3);
+}
+
+.submitButton:active {
+  transform: translateY(0);
 }
 
 /* Tablet */
 @media (max-width: 1200px) {
-  .container {
-    padding: var(--spacing-48);
+  .content {
+    max-width: 500px;
   }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
   .content {
-    gap: var(--spacing-32);
+    padding: 0 20px;
   }
 
-  .container {
-    padding: var(--spacing-24);
+  .heading {
+    font-size: 32px;
+    margin-bottom: 32px;
   }
 
-  .textContent {
-    gap: var(--spacing-24);
+  .form {
+    gap: 20px;
   }
 
-  .phone,
-  .email {
-    font-size: var(--font-regular-s-size);
+  .submitButton {
+    padding: 14px 28px;
+    font-size: 15px;
   }
 }
 

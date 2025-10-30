@@ -1,58 +1,84 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionWrapper } from './shared/SectionWrapper';
+import { Input } from './shared/Input';
 import styles from './ContactUs.module.css';
 
 export const ContactUs: React.FC = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add your form submission logic here
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <SectionWrapper id="contact">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className={styles.content}
-      >
-        <div className={styles.container}>
-          <h2 className={`h3 ${styles.mainHeading}`}>Contact Us</h2>
+      <div className={styles.content}>
+        <motion.h2 
+          className={styles.heading}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Contact Us
+        </motion.h2>
 
-          <div className={styles.infoSection}>
-            <h3 className={styles.heading}>Sale Gallery</h3>
-            <div className={styles.textContent}>
-              <div className={styles.office}>
-                <h4 className={styles.officeTitle}>OMAN OFFICE:</h4>
-                <p className={styles.address}>
-                  Office no. 11, Building No. 2870,<br />
-                  Way No. 2333, Madinat Al Sultan Qaboos.<br />
-                  P.O. Box 407, P.C. 133 Al Khuwair, Muscat,<br />
-                  Sultanate of Oman.
-                </p>
-              </div>
+        <motion.form 
+          className={styles.form}
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Input
+            label="Full Name"
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            required
+          />
 
-              <div className={styles.office}>
-                <h4 className={styles.officeTitle}>EGYPT OFFICE:</h4>
-                <p className={styles.address}>
-                  Office B4-2-1.A Building B4<br />
-                  Mivida Business Park<br />
-                  90 St. 5th Settlement, Cairo, Egypt.
-                </p>
-              </div>
+          <Input
+            label="Email Address"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-              <div className={styles.contactDetails}>
-                <h4 className={styles.officeTitle}>INQUIRY:</h4>
-                <a href="tel:+96880033666" className={styles.phone}>
-                  (+968) 80033666
-                </a>
-                <a href="mailto:Inquiry@wujha.com" className={styles.email}>
-                  Inquiry@wujha.com
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+          <Input
+            label="Phone Number"
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+
+          <button type="submit" className={styles.submitButton}>
+            Submit
+          </button>
+        </motion.form>
+      </div>
     </SectionWrapper>
   );
 };
