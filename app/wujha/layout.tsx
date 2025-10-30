@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Wujha - Uptown Muscat | Redefining Lifestyle',
@@ -7,15 +8,11 @@ export const metadata: Metadata = {
   keywords: 'Wujha, Uptown Muscat, Real Estate, Property, Oman, Knowledge Oasis Muscat',
 };
 
-export default function RootLayout({
+export default function WujhaLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }
 
