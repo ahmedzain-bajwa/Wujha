@@ -195,6 +195,8 @@
 
   .logoSection {
     margin-bottom: 48px;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .logo {
@@ -212,6 +214,8 @@
 
   .column {
     padding: 24px;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .iconWrapper {

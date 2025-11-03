@@ -84,6 +84,8 @@
 @media (max-width: 767px) {
   .content {
     gap: 32px;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .highlightsContainer {
@@ -94,6 +96,13 @@
   .highlightItem {
     width: 100%;
     padding: 0;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .mapContainer {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .separator {

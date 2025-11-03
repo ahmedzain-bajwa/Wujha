@@ -137,7 +137,14 @@
 /* Mobile */
 @media (max-width: 767px) {
   .overlay {
-    padding: var(--spacing-12);
+    padding: var(--spacing-16);
+    align-items: flex-start;
+    padding-top: var(--spacing-32);
+  }
+
+  .modal {
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
   }
 
   .content {
@@ -149,6 +156,8 @@
   }
 
   .closeButton {
+    top: var(--spacing-12);
+    right: var(--spacing-12);
     width: 36px;
     height: 36px;
     font-size: 24px;

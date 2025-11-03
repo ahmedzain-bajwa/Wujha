@@ -368,22 +368,64 @@
 /* Mobile */
 @media (max-width: 767px) {
   .overlay {
-    padding: 0;
+    padding: var(--spacing-16);
+    align-items: flex-start;
+    padding-top: var(--spacing-32);
   }
 
   .modal {
-    max-height: 100vh;
-    border-radius: 0;
-    height: 100vh;
+    max-height: calc(100vh - 64px);
+    border-radius: var(--radius-16);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
   }
 
-  .formSection {
-    padding: var(--spacing-24);
+  .content {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   .imageSection {
-    border-radius: 0;
+    border-radius: var(--radius-16) var(--radius-16) 0 0;
     min-height: 200px;
+    max-height: 250px;
+    padding: var(--spacing-16);
+  }
+
+  .carouselImage {
+    max-height: 220px;
+  }
+
+  .formSection {
+    padding: var(--spacing-24) var(--spacing-20);
+    gap: var(--spacing-20);
+  }
+
+  .title {
+    font-size: clamp(24px, 5vw, 28px);
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .input,
+  .countryButton,
+  .phoneNumberInput {
+    height: 44px;
+    font-size: 15px;
+  }
+
+  .countryButton {
+    min-width: 90px;
+    padding: 0 10px;
+  }
+
+  .submitButton {
+    height: 44px;
+    font-size: 15px;
   }
 
   .closeButton {
@@ -392,6 +434,11 @@
     width: 36px;
     height: 36px;
     font-size: 24px;
+  }
+
+  .customDropdown {
+    width: calc(100vw - 40px);
+    max-width: 280px;
   }
 }
 

@@ -147,3 +147,16 @@ a {
   padding-right: var(--padding-horizontal);
 }
 
+/* Mobile: Force visibility for all motion components */
+@media (max-width: 767px) {
+  /* Override framer-motion initial opacity on mobile to prevent loading issues */
+  [data-framer-component] {
+    opacity: 1 !important;
+  }
+  
+  /* Ensure images are visible */
+  img {
+    opacity: 1 !important;
+  }
+}
+

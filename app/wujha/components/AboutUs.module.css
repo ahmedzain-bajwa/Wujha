@@ -185,6 +185,22 @@
   .textContainer {
     padding: 20px;
     gap: var(--spacing-24);
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .videoContainer {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .imageGrid {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .imageGrid img {
+    opacity: 1 !important;
   }
 
   .heading {

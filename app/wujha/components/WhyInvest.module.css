@@ -173,6 +173,8 @@
 @media (max-width: 767px) {
   .content {
     gap: var(--spacing-32);
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .heading {
@@ -182,6 +184,11 @@
 
   .cardsContainer {
     gap: var(--spacing-40);
+  }
+
+  .card {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .cardContent {
@@ -195,6 +202,10 @@
     height: 220px;
     position: relative;
     overflow: hidden;
+  }
+
+  .cardImage img {
+    opacity: 1 !important;
   }
 
   .badge {
