@@ -25,7 +25,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-24);
-  min-width: 800px;
+  min-width: 940px;
   height: 100%;
 }
 
@@ -35,10 +35,29 @@
   height: 100%;
 }
 
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+}
+
 .logoImage {
   height: 32px;
   width: auto;
   filter: brightness(0) invert(1);
+}
+
+.partnerLogo {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.logoSeparator {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.35);
+  display: inline-block;
 }
 
 .nav {
@@ -163,7 +182,7 @@
 /* Tablet */
 @media (max-width: 1200px) {
   .container {
-    min-width: 700px;
+    min-width: 820px;
   }
   
   .nav {

@@ -45,7 +45,11 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterClick, onCallClick }) 
     <header className={`${styles.header} ${!isVisible ? styles.hidden : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img src="/assets/header/logo.svg" alt="Wujha Development" className={styles.logoImage} />
+          <div className={styles.logoGroup}>
+            <img src="/assets/header/bayut.svg" alt="Bayut" className={styles.partnerLogo} />
+            <span className={styles.logoSeparator} />
+            <img src="/assets/header/logo.svg" alt="Wujha Development" className={styles.logoImage} />
+          </div>
         </div>
 
         {/* Desktop Navigation */}
