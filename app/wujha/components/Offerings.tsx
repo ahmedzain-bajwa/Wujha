@@ -44,9 +44,13 @@ export const Offerings: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [cardWidth, setCardWidth] = useState(600);
   const [wrapperWidth, setWrapperWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updateDimensions = () => {
+      const mobile = window.innerWidth <= 767;
+      setIsMobile(mobile);
+      
       if (cardRef.current) {
         setCardWidth(cardRef.current.offsetWidth);
       }
@@ -74,9 +78,22 @@ export const Offerings: React.FC = () => {
 
   // Center the active card: position it in the middle of the wrapper
   // Keep EMPTY SPACE ON THE LEFT by padding-left; move the track LEFT when advancing
-  const centerOffset = wrapperWidth > 0 ? (wrapperWidth - cardWidth) / 2 : 0;
-  // Translate based on card index, but ensure we don't go beyond bounds
-  const translateX = -(currentIndex * (cardWidth + 24)); // 24px is the gap
+  const gap = isMobile ? 16 : 24;
+  const mobileCardWidth = 280;
+  
+  let translateX = 0;
+  let centerOffset = 0;
+  
+  if (isMobile) {
+    // On mobile, calculate center offset based on viewport width
+    centerOffset = wrapperWidth > 0 ? (wrapperWidth - mobileCardWidth) / 2 : 0;
+    // Translate to show the current card centered
+    translateX = centerOffset - (currentIndex * (mobileCardWidth + gap));
+  } else {
+    // Desktop logic
+    centerOffset = wrapperWidth > 0 ? (wrapperWidth - cardWidth) / 2 : 0;
+    translateX = -(currentIndex * (cardWidth + gap));
+  }
 
   return (
     <SectionWrapper id="offerings">
@@ -128,7 +145,8 @@ export const Offerings: React.FC = () => {
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
                 style={{
                   // Add LEFT padding equal to centerOffset so the content starts from the middle, leaving left empty
-                  paddingLeft: centerOffset,
+                  // On mobile, padding is not needed as centering is done via translateX
+                  paddingLeft: isMobile ? 0 : centerOffset,
                 }}
               >
                 {offerings.map((offering, index) => {

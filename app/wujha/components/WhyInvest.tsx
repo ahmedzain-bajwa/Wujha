@@ -46,8 +46,6 @@ export const WhyInvest: React.FC = () => {
             >
               <div className={styles.cardImage}>
                 <img src={reason.image} alt={reason.title} />
-              </div>
-              <div className={styles.cardContent}>
                 <div className={styles.badge}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -55,10 +53,12 @@ export const WhyInvest: React.FC = () => {
                   </svg>
                   <span>{reason.chipLabel}</span>
                 </div>
+              </div>
+              <div className={styles.cardContent}>
                 <h3 className={`h3 ${styles.cardTitle}`}>{reason.title}</h3>
                 <p className={`regular-m ${styles.cardDescription}`}>{reason.description}</p>
                 <button className={styles.button}>
-                  <span>Start exploring</span>
+                  <span>Register Now</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
