@@ -301,37 +301,6 @@ html[lang="ar"] .phoneNumberInput::placeholder {
   background: #000000;
 }
 
-.phoneDisplay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-8);
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-8);
-  margin-top: 8px;
-}
-
-.phoneIcon {
-  width: 20px;
-  height: 20px;
-  color: var(--color-brand-primary);
-  flex-shrink: 0;
-}
-
-.phoneLink {
-  color: var(--color-white);
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-family: 'Manrope', sans-serif;
-}
-
-.phoneLink:hover {
-  color: var(--color-brand-primary);
-}
-
 .buttonGroup {
   display: flex;
   gap: var(--spacing-16);

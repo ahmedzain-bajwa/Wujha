@@ -29,31 +29,22 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   gap: 12px;
-}
-
-.headerPhoneIcon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-white);
-  flex-shrink: 0;
 }
 
 .headerTitle {
   flex: 1;
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-black);
   margin: 0;
   text-align: center;
 }
 
 .closeButton {
   background-color: transparent;
-  color: var(--color-white);
+  color: var(--color-black);
   border: none;
   width: 32px;
   height: 32px;
@@ -70,7 +61,7 @@
 }
 
 .closeButton:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .closeButton:active {
@@ -126,6 +117,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  direction: ltr; /* Force LTR for phone numbers in all languages */
 }
 
 .phoneIcon {
@@ -133,6 +125,7 @@
   height: 24px;
   color: var(--color-brand-primary);
   flex-shrink: 0;
+  order: -1; /* Ensure icon is always on the left */
 }
 
 .phoneNumber {
@@ -141,6 +134,8 @@
   color: var(--color-brand-primary);
   text-decoration: none;
   transition: color 0.3s ease;
+  direction: ltr; /* Force LTR for phone numbers */
+  text-align: left; /* Align text to left */
 }
 
 .phoneNumber:hover {

@@ -33,8 +33,13 @@ export default function Home() {
   };
 
   const handleCallClick = () => {
-    // Always open modal on desktop (for both mobile and desktop)
-    setIsCallModalOpen(true);
+    if (isMobile) {
+      // On mobile, directly open phone dialer
+      window.location.href = 'tel:+96824442682';
+    } else {
+      // On desktop, open modal with QR code
+      setIsCallModalOpen(true);
+    }
   };
 
   return (

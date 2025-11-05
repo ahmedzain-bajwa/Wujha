@@ -93,9 +93,6 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterClick, onCallClick }) 
             <button onClick={() => scrollToSection('why-invest')} className={styles.navLink}>
               {t('header.whyInvest')}
             </button>
-            <button onClick={() => scrollToSection('about')} className={styles.navLink}>
-              {t('header.aboutUs')}
-            </button>
             <button onClick={() => scrollToSection('offerings')} className={styles.navLink}>
               {t('header.offerings')}
             </button>
@@ -176,9 +173,6 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterClick, onCallClick }) 
           </button>
           <button onClick={() => scrollToSection('why-invest')} className={styles.mobileNavLink}>
             {t('header.whyInvest')}
-          </button>
-          <button onClick={() => scrollToSection('about')} className={styles.mobileNavLink}>
-            {t('header.aboutUs')}
           </button>
           <button onClick={() => scrollToSection('offerings')} className={styles.mobileNavLink}>
             {t('header.offerings')}

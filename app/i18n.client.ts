@@ -5,6 +5,7 @@ import { initReactI18next } from 'react-i18next'
 import enTranslations from '@/locales/en.json'
 import arTranslations from '@/locales/ar.json'
 
+// Initialize synchronously to ensure translations are available immediately
 if (!i18n.isInitialized) {
   i18n.use(initReactI18next).init({
     resources: {
@@ -18,6 +19,9 @@ if (!i18n.isInitialized) {
     lng: 'ar',
     fallbackLng: 'ar',
     interpolation: { escapeValue: false },
+    react: {
+      useSuspense: false, // Disable suspense to prevent loading issues
+    },
   })
 }
 

@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
 }
 
 .logoSection {
@@ -142,81 +142,6 @@
   object-position: center;
 }
 
-/* Phone Section */
-.phoneSection {
-  text-align: center;
-}
-
-.phoneContainer {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-12);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 12px 20px;
-  transition: all 0.3s ease;
-}
-
-.phoneContainer:hover {
-  border-color: rgba(198, 65, 48, 0.3);
-  background: rgba(198, 65, 48, 0.05);
-}
-
-.phoneLink {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-8);
-  color: var(--color-white);
-  text-decoration: none;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.phoneLink:hover {
-  color: var(--color-brand-primary);
-}
-
-.phoneIcon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--color-brand-primary);
-  stroke: currentColor;
-}
-
-.copyButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  width: 28px;
-  height: 28px;
-}
-
-.copyButton:hover {
-  color: var(--color-brand-primary);
-  background: rgba(198, 65, 48, 0.1);
-}
-
-.copyButton:active {
-  transform: scale(0.95);
-}
-
-.copyButton svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-}
-
 /* Tablet */
 @media (max-width: 1200px) {
   .container {
@@ -315,38 +240,10 @@
     height: 35px;
     width: 118px;
   }
-
-  .phoneContainer {
-    padding: 10px 16px;
-    gap: var(--spacing-8);
-  }
-
-  .phoneLink {
-    font-size: 14px;
-    gap: var(--spacing-6);
-  }
-
-  .phoneIcon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .copyButton {
-    width: 26px;
-    height: 26px;
-    padding: 5px;
-  }
-
-  .copyButton svg {
-    width: 14px;
-    height: 14px;
-  }
 }
 
 /* Apply Arabic font when language is Arabic */
 html[lang="ar"] .navLink,
-html[dir="rtl"] .navLink,
-html[lang="ar"] .phoneLink,
-html[dir="rtl"] .phoneLink {
+html[dir="rtl"] .navLink {
   font-family: var(--font-plex-arabic), var(--font-manrope), sans-serif;
 }

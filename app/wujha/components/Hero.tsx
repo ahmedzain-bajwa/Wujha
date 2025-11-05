@@ -43,6 +43,14 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadBrochure }) => {
             src="/assets/hero/main-hero.png" 
             alt="Modern Building" 
             className={styles.mainImage}
+            loading="eager"
+            fetchPriority="high"
+            onLoad={(e) => {
+              // Ensure image is visible once loaded on mobile
+              const target = e.target as HTMLImageElement;
+              target.style.opacity = '1';
+              target.style.visibility = 'visible';
+            }}
           />
         </motion.div>
 

@@ -14,7 +14,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const { t: i18nT, i18n } = useTranslation()
+  const { t: i18nT, i18n, ready: i18nReady } = useTranslation()
   const pathname = usePathname()
   const router = useRouter()
   const [language, setLanguage] = useState('ar')
@@ -31,17 +31,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const detectedLanguage = pathname?.startsWith('/en') ? 'en' : 'ar'
     setLanguage(detectedLanguage)
     
-    // Sync i18next with detected language
-    if (i18n && i18n.language !== detectedLanguage) {
+    // Sync i18next with detected language - wait for i18n to be ready
+    if (i18n && i18n.isInitialized && i18n.language !== detectedLanguage) {
       i18n.changeLanguage(detectedLanguage)
     }
     
     // Update document direction and lang attribute
-    document.documentElement.setAttribute('dir', detectedLanguage === 'ar' ? 'rtl' : 'ltr')
-    document.documentElement.setAttribute('lang', detectedLanguage)
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('dir', detectedLanguage === 'ar' ? 'rtl' : 'ltr')
+      document.documentElement.setAttribute('lang', detectedLanguage)
+    }
     
     // Save to localStorage
-    localStorage.setItem('wujha-language', detectedLanguage)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('wujha-language', detectedLanguage)
+    }
   }, [pathname, i18n, mounted])
 
   const toggleLanguage = () => {
@@ -89,19 +93,46 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   // Wrapper function to use i18next's t with same API as before
   const t = (key: string): string => {
-    if (!mounted || !i18nT) return key
+    // Always try to get translation, even if not fully mounted
     try {
-      return i18nT(key)
+      // First try using react-i18next's t function
+      if (i18nT && i18nReady) {
+        const translation = i18nT(key)
+        if (translation && translation !== key) {
+          return translation
+        }
+      }
+      
+      // Fallback to direct i18n.t if available
+      if (i18n && i18n.isInitialized) {
+        const translation = i18n.t(key)
+        if (translation && translation !== key) {
+          return translation
+        }
+      }
     } catch (error) {
-      console.warn(`Translation error for key: ${key}`, error)
-      return key
+      // Silently fail and return key
     }
+    
+    // Last resort: return key (shouldn't happen if translations are loaded)
+    return key
   }
 
   if (!mounted) {
     // Return default values during SSR - default to Arabic
+    // But provide a working t function that uses i18n directly if available
+    const ssrT = (key: string): string => {
+      try {
+        if (i18n && i18n.isInitialized) {
+          return i18n.t(key) || key
+        }
+      } catch (error) {
+        // Fall through
+      }
+      return key
+    }
     return (
-      <LanguageContext.Provider value={{ language: 'ar', toggleLanguage, t, isRTL: true }}>
+      <LanguageContext.Provider value={{ language: 'ar', toggleLanguage, t: ssrT, isRTL: true }}>
         {children}
       </LanguageContext.Provider>
     )

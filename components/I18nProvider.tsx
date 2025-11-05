@@ -10,27 +10,44 @@ export default function I18nProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [ready, setReady] = useState(true) // Start as ready to prevent white screen
+  const [ready, setReady] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    // Detect language from URL - default to Arabic, /en for English
-    const locale = pathname?.startsWith('/en') ? 'en' : 'ar'
-
-    if (i18n.language !== locale) {
-      i18n.changeLanguage(locale)
+    // Wait for i18n to be initialized
+    if (!i18n.isInitialized) {
+      // If not initialized, wait a bit and check again
+      const checkReady = () => {
+        if (i18n.isInitialized) {
+          initializeLanguage()
+        } else {
+          setTimeout(checkReady, 10)
+        }
+      }
+      checkReady()
+    } else {
+      initializeLanguage()
     }
 
-    // Update HTML attributes
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = locale
-      document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr'
-    }
+    function initializeLanguage() {
+      // Detect language from URL - default to Arabic, /en for English
+      const locale = pathname?.startsWith('/en') ? 'en' : 'ar'
 
-    setReady(true)
+      if (i18n.language !== locale) {
+        i18n.changeLanguage(locale)
+      }
+
+      // Update HTML attributes
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = locale
+        document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr'
+      }
+
+      setReady(true)
+    }
   }, [pathname])
 
-  // Always render children to prevent white screen - handle language sync in effect
+  // Show children immediately but ensure i18n is ready
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
 }
 
