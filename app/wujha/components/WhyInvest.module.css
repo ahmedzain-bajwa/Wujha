@@ -148,6 +148,12 @@
   height: 20px;
 }
 
+/* Arabic version: Reverse arrow direction */
+html[dir="rtl"] .button svg,
+html[lang="ar"] .button svg {
+  transform: scaleX(-1);
+}
+
 /* Tablet */
 @media (max-width: 1200px) {
   .card {

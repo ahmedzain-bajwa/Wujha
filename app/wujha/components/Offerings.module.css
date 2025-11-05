@@ -164,6 +164,17 @@
   width: fit-content;
 }
 
+/* Fix for Arabic/RTL: Ensure carousel container maintains LTR direction for proper card positioning */
+html[dir="rtl"] .carouselWrapper,
+html[lang="ar"] .carouselWrapper {
+  direction: ltr;
+}
+
+html[dir="rtl"] .cardsContainer,
+html[lang="ar"] .cardsContainer {
+  direction: ltr;
+}
+
 .card {
   background-color: transparent;
   border-radius: 24px;
@@ -246,11 +257,23 @@
   line-height: 1.3;
 }
 
+/* Arabic version: Right align heading */
+html[dir="rtl"] .cardTitle,
+html[lang="ar"] .cardTitle {
+  text-align: right;
+}
+
 .cardSubtitle {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   line-height: 1.5;
+}
+
+/* Arabic version: Right align description */
+html[dir="rtl"] .cardSubtitle,
+html[lang="ar"] .cardSubtitle {
+  text-align: right;
 }
 
 .indicators {
@@ -259,6 +282,12 @@
   margin-top: var(--spacing-16);
   position: relative;
   z-index: 1;
+}
+
+/* Arabic version: Fix carousel dots to display left-to-right (same as English) */
+html[dir="rtl"] .indicators,
+html[lang="ar"] .indicators {
+  direction: ltr;
 }
 
 .indicator {

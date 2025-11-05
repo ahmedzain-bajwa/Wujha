@@ -2,10 +2,16 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { SectionWrapper } from './shared/SectionWrapper';
 import styles from './ContactUs.module.css';
 
-export const ContactUs: React.FC = () => {
+interface ContactUsProps {
+  onCallClick: () => void;
+}
+
+export const ContactUs: React.FC<ContactUsProps> = ({ onCallClick }) => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -20,10 +26,23 @@ export const ContactUs: React.FC = () => {
   const updateDropdownPosition = () => {
     if (countryButtonRef.current) {
       const rect = countryButtonRef.current.getBoundingClientRect();
-      setDropdownPosition({
-        top: rect.bottom + 4,
-        left: rect.left
-      });
+      const isRTL = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
+      
+      if (isRTL) {
+        // For RTL: align dropdown to the right edge of country button
+        setDropdownPosition({
+          top: rect.bottom + 4,
+          left: rect.right - 280, // 280px is the dropdown width
+          right: undefined,
+        });
+      } else {
+        // For LTR: align dropdown to the left edge of country button
+        setDropdownPosition({
+          top: rect.bottom + 4,
+          left: rect.left,
+          right: undefined,
+        });
+      }
     }
   };
 
@@ -103,7 +122,7 @@ export const ContactUs: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Contact Us
+              {t('contactUs.heading')}
             </motion.h2>
 
             <motion.form 
@@ -116,11 +135,11 @@ export const ContactUs: React.FC = () => {
             >
               <div className={styles.inputGroup}>
                 <label className={styles.inputLabel}>
-                  Full Name <span className={styles.required}>*</span>
+                  {t('contactUs.fullName')} <span className={styles.required}>*</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="Enter your full name"
+                  placeholder={t('contactUs.fullNamePlaceholder')}
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
@@ -131,11 +150,11 @@ export const ContactUs: React.FC = () => {
 
               <div className={styles.inputGroup}>
                 <label className={styles.inputLabel}>
-                  Email Address <span className={styles.required}>*</span>
+                  {t('contactUs.email')} <span className={styles.required}>*</span>
                 </label>
                 <input
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder={t('contactUs.emailPlaceholder')}
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -146,7 +165,7 @@ export const ContactUs: React.FC = () => {
 
               <div className={styles.inputGroup}>
                 <label className={styles.inputLabel}>
-                  Phone Number <span className={styles.required}>*</span>
+                  {t('contactUs.phone')} <span className={styles.required}>*</span>
                 </label>
                 <div className={styles.phoneInputWrapper}>
                   <div className={styles.customCountrySelect}>
@@ -181,13 +200,13 @@ export const ContactUs: React.FC = () => {
                         className={styles.customDropdown}
                         style={{
                           top: `${dropdownPosition.top}px`,
-                          left: `${dropdownPosition.left}px`
+                          left: `${dropdownPosition.left}px`,
                         }}
                       >
                         <div className={styles.dropdownSearch}>
                           <input
                             type="text"
-                            placeholder="Search"
+                            placeholder={t('contactUs.search')}
                             className={styles.searchInput}
                           />
                         </div>
@@ -212,7 +231,7 @@ export const ContactUs: React.FC = () => {
                   </div>
                   <input
                     type="tel"
-                    placeholder="Mobile number"
+                    placeholder={t('contactUs.phonePlaceholder')}
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
@@ -222,9 +241,14 @@ export const ContactUs: React.FC = () => {
                 </div>
               </div>
 
-              <button type="submit" className={styles.submitButton}>
-                Submit
-              </button>
+              <div className={styles.buttonGroup}>
+                <button type="submit" className={styles.submitButton}>
+                  {t('contactUs.submit')}
+                </button>
+                <button type="button" className={styles.callUsButton} onClick={onCallClick}>
+                  {t('contactUs.callUs')}
+                </button>
+              </div>
             </motion.form>
           </div>
         </div>

@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import QRCode from 'qrcode';
 import styles from './CallModal.module.css';
 
 interface CallModalProps {
@@ -10,15 +12,54 @@ interface CallModalProps {
 }
 
 export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
+  const [qrCodeDataURL, setQrCodeDataURL] = useState<string>('');
+  
+  // Generate QR code with phone number
+  useEffect(() => {
+    const generateQRCode = async () => {
+      try {
+        const phoneNumber = '+96824442682';
+        const qrData = `tel:${phoneNumber}`;
+
+        const qrCodeDataURL = await QRCode.toDataURL(qrData, {
+          width: 300,
+          margin: 2,
+          color: {
+            dark: '#000000',
+            light: '#FFFFFF',
+          },
+        });
+
+        setQrCodeDataURL(qrCodeDataURL);
+      } catch (error) {
+        console.error('Error generating QR code:', error);
+      }
+    };
+
+    if (isOpen) {
+      generateQRCode();
+    }
+  }, [isOpen]);
+  
   useEffect(() => {
     if (isOpen) {
+      // Prevent body scroll when modal is open
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      
+      return () => {
+        // Restore body scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isOpen]);
 
   return (
@@ -33,35 +74,54 @@ export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
         >
           <motion.div
             className={styles.modal}
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button className={styles.closeButton} onClick={onClose} aria-label="Close modal">
-              ×
-            </button>
+            {/* Header */}
+            <div className={styles.header}>
+              <svg className={styles.headerPhoneIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <h2 className={styles.headerTitle}>{t('callModal.title')}</h2>
+              <button className={styles.closeButton} onClick={onClose} aria-label="Close modal">
+                ×
+              </button>
+            </div>
 
+            {/* Content */}
             <div className={styles.content}>
-              <h2 className={styles.title}>Scan to Call Us</h2>
-              <p className={styles.subtitle}>
-                Scan the QR code below with your phone to call us directly at (+968) 80033666
+              {/* QR Code */}
+              <div className={styles.qrContainer}>
+                {qrCodeDataURL ? (
+                  <img src={qrCodeDataURL} alt="QR Code to Call" className={styles.qrCode} />
+                ) : (
+                  <div className={styles.qrPlaceholder}>
+                    <span>Loading QR Code...</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Get in touch text */}
+              <p className={styles.getInTouchText}>
+                {t('callModal.getInTouch')}
               </p>
 
-              <div className={styles.qrContainer}>
-                <img src="/assets/qr-call.png" alt="QR Code to Call" />
+              {/* Phone Number */}
+              <div className={styles.phoneNumberContainer}>
+                <svg className={styles.phoneIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <a href="tel:+96824442682" className={styles.phoneNumber}>
+                  {t('callModal.phoneNumber')}
+                </a>
               </div>
 
-              <div className={styles.divider}>
-                <span>OR</span>
-              </div>
-
-              <a href="tel:+96880033666" className={styles.callButton}>
-                <span className={styles.phoneIcon}>📞</span>
-                Call (+968) 80033666
-              </a>
-
-              <p className={styles.note}>Available 24/7 for your inquiries</p>
+              {/* Call to Action */}
+              <p className={styles.callToAction}>
+                {t('callModal.callToAction')}
+              </p>
             </div>
           </motion.div>
         </motion.div>
@@ -69,4 +129,3 @@ export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
     </AnimatePresence>
   );
 };
-

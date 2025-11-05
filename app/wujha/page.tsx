@@ -33,13 +33,8 @@ export default function Home() {
   };
 
   const handleCallClick = () => {
-    if (isMobile) {
-      // On mobile, directly open phone dialer
-      window.location.href = 'tel:+96880033666';
-    } else {
-      // On desktop, open modal with QR code
-      setIsCallModalOpen(true);
-    }
+    // Always open modal on desktop (for both mobile and desktop)
+    setIsCallModalOpen(true);
   };
 
   return (
@@ -52,11 +47,11 @@ export default function Home() {
 
       <Offerings />
 
-      <WhyInvest />
+      <WhyInvest onRegisterClick={handleRegisterClick} />
 
-      <AboutUs />
+      <AboutUs onRegisterClick={handleRegisterClick} />
 
-      <ContactUs />
+      <ContactUs onCallClick={handleCallClick} />
 
       <Footer />
 

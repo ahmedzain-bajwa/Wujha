@@ -5,6 +5,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,124 +15,143 @@
 
 .modal {
   background-color: var(--color-white);
-  border-radius: var(--radius-16);
+  border-radius: 16px;
   max-width: 500px;
   width: 100%;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px 16px 0 0;
+  gap: 12px;
+}
+
+.headerPhoneIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.headerTitle {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin: 0;
+  text-align: center;
 }
 
 .closeButton {
-  position: absolute;
-  top: var(--spacing-16);
-  right: var(--spacing-16);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
   color: var(--color-white);
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  z-index: 10;
+  flex-shrink: 0;
   line-height: 1;
+  padding: 0;
 }
 
 .closeButton:hover {
-  background-color: var(--color-brand-primary);
-  transform: rotate(90deg);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+/* Content */
 .content {
-  padding: clamp(32px, 5vw, 48px);
+  padding: 40px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-24);
+  gap: 24px;
   text-align: center;
 }
 
-.title {
-  font-size: var(--font-h3-size);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.subtitle {
-  font-size: var(--font-regular-m-size);
-  color: var(--text-secondary);
-  margin: 0;
-}
-
 .qrContainer {
-  padding: var(--spacing-24);
-  background-color: var(--color-grey-light);
-  border-radius: var(--radius-16);
   width: 100%;
   max-width: 300px;
-}
-
-.qrContainer img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.divider {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-16);
-  color: var(--text-secondary);
-  font-size: var(--font-regular-s-size);
-  font-weight: 600;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background-color: var(--color-border-grey);
-}
-
-.callButton {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-12);
-  background-color: var(--color-brand-primary);
-  color: var(--color-white);
-  padding: var(--spacing-16) var(--spacing-32);
-  border-radius: var(--radius-8);
-  font-family: 'Gelasio', serif;
-  font-size: var(--font-regular-l-size);
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  width: 100%;
 }
 
-.callButton:hover {
-  background-color: #a83628;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(198, 65, 48, 0.3);
+.qrCode {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.qrPlaceholder {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+}
+
+.getInTouchText {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+.phoneNumberContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .phoneIcon {
-  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: var(--color-brand-primary);
+  flex-shrink: 0;
 }
 
-.note {
-  font-size: var(--font-regular-xs-size);
-  color: var(--text-secondary);
-  font-style: italic;
+.phoneNumber {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.phoneNumber:hover {
+  color: #a83628;
+}
+
+.callToAction {
+  font-size: 14px;
+  color: #999;
   margin: 0;
+  font-weight: 400;
 }
 
 /* Mobile */
@@ -147,20 +167,45 @@
     overflow-y: auto;
   }
 
+  .header {
+    padding: 16px 20px;
+  }
+
+  .headerTitle {
+    font-size: 16px;
+  }
+
   .content {
-    padding: var(--spacing-24);
+    padding: 32px 24px;
+    gap: 20px;
   }
 
   .qrContainer {
     max-width: 250px;
+    padding: 16px;
   }
 
-  .closeButton {
-    top: var(--spacing-12);
-    right: var(--spacing-12);
-    width: 36px;
-    height: 36px;
-    font-size: 24px;
+  .phoneNumber {
+    font-size: 20px;
+  }
+
+  .getInTouchText {
+    font-size: 14px;
+  }
+
+  .callToAction {
+    font-size: 13px;
   }
 }
 
+/* Apply Arabic font when language is Arabic */
+html[lang="ar"] .headerTitle,
+html[dir="rtl"] .headerTitle,
+html[lang="ar"] .getInTouchText,
+html[dir="rtl"] .getInTouchText,
+html[lang="ar"] .phoneNumber,
+html[dir="rtl"] .phoneNumber,
+html[lang="ar"] .callToAction,
+html[dir="rtl"] .callToAction {
+  font-family: var(--font-plex-arabic), var(--font-manrope), sans-serif;
+}

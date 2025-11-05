@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PhoneInput from 'react-phone-input-2';
+import { useLanguage } from '@/contexts/LanguageContext';
 import 'react-phone-input-2/lib/style.css';
 import styles from './BrochureModal.module.css';
 
@@ -12,6 +13,7 @@ interface BrochureModalProps {
 }
 
 export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -40,10 +42,15 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
     '/assets/modals/image-3.jpeg',
   ];
 
-  // Auto carousel effect
+  // Auto carousel effect and prevent body scroll
   useEffect(() => {
     if (isOpen) {
+      // Prevent body scroll when modal is open
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       
       const interval = setInterval(() => {
         setCurrentImageIndex((prevIndex) => 
@@ -51,13 +58,16 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
         );
       }, 3000); // Change image every 3 seconds
 
-      return () => clearInterval(interval);
-    } else {
-      document.body.style.overflow = 'unset';
+      return () => {
+        clearInterval(interval);
+        // Restore body scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isOpen, carouselImages.length]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,19 +156,19 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
                   <img src="/assets/modals/logo-blk.svg" alt="Wujha Development" className={styles.brandLogo} />
                 </div>
                 
-                <h2 className={styles.title}>Register Now</h2>
+                <h2 className={styles.title}>{t('brochureModal.title')}</h2>
                 <p className={styles.subtitle}>
-                  Register to download the brochures now
+                  {t('brochureModal.subtitle')}
                 </p>
 
                 <form onSubmit={handleSubmit} className={styles.form}>
                   <div className={styles.inputGroup}>
                     <label className={styles.inputLabel}>
-                      Full Name <span className={styles.required}>*</span>
+                      {t('brochureModal.fullName')} <span className={styles.required}>*</span>
                     </label>
                     <input
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder={t('brochureModal.fullNamePlaceholder')}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
@@ -168,11 +178,11 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
 
                   <div className={styles.inputGroup}>
                     <label className={styles.inputLabel}>
-                      Email Address <span className={styles.required}>*</span>
+                      {t('brochureModal.email')} <span className={styles.required}>*</span>
                     </label>
                     <input
                       type="email"
-                      placeholder="Enter your email address"
+                      placeholder={t('brochureModal.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -182,7 +192,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
 
                   <div className={styles.inputGroup}>
                     <label className={styles.inputLabel}>
-                      Phone Number <span className={styles.required}>*</span>
+                      {t('brochureModal.phone')} <span className={styles.required}>*</span>
                     </label>
                     <div className={styles.phoneInputWrapper}>
                       <div className={styles.customCountrySelect}>
@@ -193,10 +203,21 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
                           onClick={() => {
                             if (!isCountryDropdownOpen && countryButtonRef.current) {
                               const rect = countryButtonRef.current.getBoundingClientRect();
-                              setDropdownPosition({
-                                top: rect.bottom + 4,
-                                left: rect.left
-                              });
+                              const isRTL = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
+                              
+                              if (isRTL) {
+                                // For RTL: align dropdown to the right edge of country button
+                                setDropdownPosition({
+                                  top: rect.bottom + 4,
+                                  left: rect.right - 280, // 280px is the dropdown width
+                                });
+                              } else {
+                                // For LTR: align dropdown to the left edge of country button
+                                setDropdownPosition({
+                                  top: rect.bottom + 4,
+                                  left: rect.left,
+                                });
+                              }
                             }
                             setIsCountryDropdownOpen(!isCountryDropdownOpen);
                           }}
@@ -220,7 +241,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
                             <div className={styles.dropdownSearch}>
                               <input
                                 type="text"
-                                placeholder="Search"
+                                placeholder={t('brochureModal.search')}
                                 className={styles.searchInput}
                               />
                             </div>
@@ -245,7 +266,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
                       </div>
                       <input
                         type="tel"
-                        placeholder="Mobile number"
+                        placeholder={t('brochureModal.phonePlaceholder')}
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         required
@@ -259,14 +280,14 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
                     className={styles.submitButton}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Processing...' : 'Register & Download Brochures'}
+                    {isSubmitting ? t('brochureModal.processing') : t('brochureModal.register')}
                   </button>
                 </form>
 
                 <p className={styles.legalText}>
-                  By registering, you agree to our{' '}
-                  <a href="#" className={styles.link}>Terms and Conditions</a> and{' '}
-                  <a href="#" className={styles.link}>Privacy Policy</a>.
+                  {t('brochureModal.legalText')}{' '}
+                  <a href="#" className={styles.link}>{t('brochureModal.terms')}</a> and{' '}
+                  <a href="#" className={styles.link}>{t('brochureModal.privacy')}</a>.
                 </p>
               </div>
             </div>

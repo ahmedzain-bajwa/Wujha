@@ -2,29 +2,32 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { SectionWrapper } from './shared/SectionWrapper';
 import styles from './ProjectHighlights.module.css';
 
-const highlights = [
-  {
-    time: '5 MIN',
-    location: 'Al Rusayl Industrial Area',
-  },
-  {
-    time: '10 MIN',
-    location: 'Al Mawaleh - City Center',
-  },
-  {
-    time: '15 MIN',
-    location: 'Oman International Exhibition',
-  },
-  {
-    time: '20 MIN',
-    location: 'Muscat International Airport',
-  },
-];
-
 export const ProjectHighlights: React.FC = () => {
+  const { t } = useLanguage();
+  
+  const highlights = [
+    {
+      time: '5 MIN',
+      location: t('projectHighlights.alRusayl'),
+    },
+    {
+      time: '10 MIN',
+      location: t('projectHighlights.alMawaleh'),
+    },
+    {
+      time: '15 MIN',
+      location: t('projectHighlights.exhibition'),
+    },
+    {
+      time: '20 MIN',
+      location: t('projectHighlights.airport'),
+    },
+  ];
+
   return (
     <SectionWrapper id="highlights">
       <motion.div
@@ -34,7 +37,7 @@ export const ProjectHighlights: React.FC = () => {
         transition={{ duration: 0.6 }}
         className={styles.content}
       >
-        <h2 className={styles.heading}>Project Highlights</h2>
+        <h2 className={styles.heading}>{t('projectHighlights.heading')}</h2>
         <div className={styles.highlightsContainer}>
           {highlights.map((item, index) => (
             <React.Fragment key={index}>

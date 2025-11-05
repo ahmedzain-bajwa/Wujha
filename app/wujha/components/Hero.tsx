@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -9,6 +10,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onDownloadBrochure }) => {
+  const { t } = useLanguage();
   const { scrollY } = useScroll();
   
   // Parallax effect: balanced visibility with faster animation
@@ -51,9 +53,10 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadBrochure }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h1 className={styles.heading}>REDEFINE LIFESTYLE</h1>
+          <h1 className={styles.heading}>{t('hero.heading')}</h1>
+          <h2 className={styles.locationHeading}>{t('hero.locationHeading')}</h2>
           <p className={styles.subtitle}>
-            Wujha Muscat is more than a home — it's a vibrant, integrated city in the heart of Knowledge Oasis Muscat. Live, work, and play in harmony, surrounded by nature, tranquility, and the people you love.
+            {t('hero.subtitle')}
           </p>
           <button onClick={onDownloadBrochure} className={styles.button}>
             <svg className={styles.downloadIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -61,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadBrochure }) => {
               <polyline points="7,10 12,15 17,10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download Brochure
+            {t('hero.downloadBrochure')}
           </button>
         </motion.div>
       </div>

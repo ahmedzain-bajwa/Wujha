@@ -114,6 +114,13 @@
   background-color: var(--color-white);
   overflow-y: auto;
   position: relative;
+  overflow-x: visible;
+}
+
+/* Arabic version: Ensure form section doesn't clip dropdown */
+html[dir="rtl"] .formSection,
+html[lang="ar"] .formSection {
+  overflow-x: visible;
 }
 
 .branding {
@@ -155,6 +162,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow: visible;
 }
 
 .inputLabel {
@@ -224,12 +232,16 @@
   display: flex;
   gap: 0;
   position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
 }
 
 .customCountrySelect {
   position: relative;
   flex-shrink: 0;
   z-index: 100;
+  overflow: visible;
 }
 
 .countryButton {
@@ -278,6 +290,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow-y: auto;
   z-index: 2001;
+}
+
+/* Arabic version: Ensure dropdown aligns right with country button */
+html[dir="rtl"] .customDropdown,
+html[lang="ar"] .customDropdown {
+  transform: translateX(0);
 }
 
 .dropdownSearch {
@@ -341,6 +359,33 @@
   font-size: 16px;
   font-family: 'Manrope', sans-serif;
   transition: border-color 0.3s ease;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Arabic version: Fix phone input border radius and positioning */
+html[dir="rtl"] .phoneNumberInput,
+html[lang="ar"] .phoneNumberInput {
+  border-radius: 8px 0 0 8px;
+  direction: ltr; /* Keep phone numbers LTR */
+  text-align: right; /* But align text to the right */
+}
+
+html[dir="rtl"] .countryButton,
+html[lang="ar"] .countryButton {
+  border-right: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+}
+
+.phoneNumberInput::placeholder {
+  color: #999;
+}
+
+/* Arabic version: Right align placeholder text (but keep direction LTR for numbers) */
+html[dir="rtl"] .phoneNumberInput::placeholder,
+html[lang="ar"] .phoneNumberInput::placeholder {
+  text-align: right;
 }
 
 .phoneNumberInput:focus {

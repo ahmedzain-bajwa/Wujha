@@ -2,9 +2,29 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
+  const { t, language } = useLanguage();
+  
+  // Get language-specific URLs
+  const helpSupportUrl = language === 'en' 
+    ? 'https://help.bayut.om/hc/en-us' 
+    : 'https://help.bayut.om/hc/ar';
+  
+  const aboutUsUrl = language === 'en'
+    ? 'https://www.bayut.om/en/about/aboutus.html'
+    : 'https://www.bayut.om/about/aboutus.html';
+  
+  const termsPrivacyUrl = language === 'en'
+    ? 'https://www.bayut.om/en/terms.html'
+    : 'https://www.bayut.om/terms.html';
+  
+  const appStoreUrl = 'https://apps.apple.com/sa/app/bayut-oman/id6736895230';
+  
+  const googlePlayUrl = 'https://play.google.com/store/apps/details?id=com.bayut.bayutoman&pli=1';
+  
   return (
     <footer className={styles.footer}>
       <div className={styles.backgroundOverlay}></div>
@@ -18,91 +38,120 @@ export const Footer: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <img src="/assets/header/logo.svg" alt="Wujha Logo" className={styles.logo} />
-          <div className={styles.divider}></div>
+          <div className={styles.logoGroup}>
+            <img src="/assets/header/bayut.svg" alt="Bayut" className={styles.partnerLogo} />
+            <span className={styles.logoSeparator} />
+            <img src="/assets/header/logo.svg" alt="Wujha Development" className={styles.logoImage} />
+          </div>
         </motion.div>
 
-        {/* Content Grid */}
-        <div className={styles.contentGrid}>
-          {/* Oman Office */}
-          <motion.div 
-            className={styles.column}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <div className={styles.iconWrapper}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-            </div>
-            <h3 className={styles.columnTitle}>OMAN OFFICE</h3>
-            <p className={styles.address}>
-              Office no. 11, Building No. 2870,<br />
-              Way No. 2333, Madinat Al Sultan Qaboos.<br />
-              P.O. Box 407, P.C. 133 Al Khuwair, Muscat,<br />
-              Sultanate of Oman.
-            </p>
-          </motion.div>
+        {/* Navigation Links */}
+        <motion.div 
+          className={styles.navLinks}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <a href={helpSupportUrl} className={styles.navLink} target="_blank" rel="noopener noreferrer">
+            {t('footer.helpSupport')}
+          </a>
+          <span className={styles.navSeparator} />
+          <a href={aboutUsUrl} className={styles.navLink} target="_blank" rel="noopener noreferrer">
+            {t('footer.aboutUs')}
+          </a>
+          <span className={styles.navSeparator} />
+          <a href={termsPrivacyUrl} className={styles.navLink} target="_blank" rel="noopener noreferrer">
+            {t('footer.termsPrivacy')}
+          </a>
+        </motion.div>
 
-          {/* Egypt Office */}
-          <motion.div 
-            className={styles.column}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+        {/* App Store Buttons */}
+        <motion.div 
+          className={styles.appButtons}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <a 
+            href={appStoreUrl} 
+            className={styles.appButton}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <div className={styles.iconWrapper}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-            </div>
-            <h3 className={styles.columnTitle}>EGYPT OFFICE</h3>
-            <p className={styles.address}>
-              Office B4-2-1.A Building B4<br />
-              Mivida Business Park<br />
-              90 St. 5th Settlement, Cairo, Egypt.
-            </p>
-          </motion.div>
+            <img 
+              src="/assets/footer/app-store-badge.png"
+              alt="Download on the App Store"
+              className={styles.appStoreBadge}
+            />
+          </a>
+          
+          <a 
+            href={googlePlayUrl} 
+            className={styles.appButton}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img 
+              src="/assets/footer/Google-Playstore.png"
+              alt="Get it on Google Play"
+              className={styles.googlePlayBadge}
+            />
+          </a>
+        </motion.div>
 
-          {/* Inquiry */}
-          <motion.div 
-            className={styles.column}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className={styles.iconWrapper}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Phone Number */}
+        <motion.div 
+          className={styles.phoneSection}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className={styles.phoneContainer}>
+            <a 
+              href={`tel:+96824442682`} 
+              className={styles.phoneLink}
+            >
+              <svg className={styles.phoneIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </div>
-            <h3 className={styles.columnTitle}>INQUIRY</h3>
-            <div className={styles.contactLinks}>
-              <a href="tel:+96880033666" className={styles.contactLink}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>(+968) 80033666</span>
-              </a>
-              <a href="mailto:Inquiry@wujha.com" className={styles.contactLink}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>Inquiry@wujha.com</span>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
+              <span>+968-24442682</span>
+            </a>
+            <button 
+              className={styles.copyButton}
+              onClick={async () => {
+                const phoneNumber = '+968-24442682';
+                try {
+                  await navigator.clipboard.writeText(phoneNumber);
+                  // Show feedback (you can add a toast notification here if needed)
+                  const button = document.querySelector(`.${styles.copyButton}`) as HTMLElement;
+                  if (button) {
+                    const originalHTML = button.innerHTML;
+                    button.innerHTML = `
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    `;
+                    setTimeout(() => {
+                      button.innerHTML = originalHTML;
+                    }, 2000);
+                  }
+                } catch (err) {
+                  console.error('Failed to copy:', err);
+                }
+              }}
+              aria-label="Copy phone number"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );
 };
-

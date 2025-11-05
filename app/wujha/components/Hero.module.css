@@ -156,6 +156,38 @@
   text-align: center;
 }
 
+/* Location Heading - Above subtitle */
+.locationHeading {
+  position: absolute;
+  top: calc(50% - 120px);
+  right: 35px;
+  z-index: 10;
+  max-width: 500px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 var(--spacing-16) 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: var(--font-regular-l-size);
+  line-height: 1.6;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* English version: Left align parallel with description, increase size by 4px, increase font weight */
+html[dir="ltr"] .locationHeading,
+html[lang="en"] .locationHeading {
+  right: calc(35px + 313px);
+  left: auto;
+  text-align: left;
+  font-size: clamp(20px, calc(2vw + 4px), 24px);
+  font-weight: 500;
+}
+
+/* Arabic version: Right align location heading */
+html[dir="rtl"] .locationHeading,
+html[lang="ar"] .locationHeading {
+  text-align: right;
+}
+
 /* Subtitle - Independent positioning on right (in white space) */
 .subtitle {
   position: absolute;
@@ -170,6 +202,12 @@
   line-height: 1.6;
   font-weight: 400;
   text-align: left;
+}
+
+/* Arabic version: Right align subtitle */
+html[dir="rtl"] .subtitle,
+html[lang="ar"] .subtitle {
+  text-align: right;
 }
 
 /* Button - Independent positioning below subtitle on right (in white space) */
@@ -192,6 +230,13 @@
   align-items: center;
   gap: 10px;
   height: 48px;
+}
+
+/* Arabic version: Align button right parallel with description */
+html[dir="rtl"] .button,
+html[lang="ar"] .button {
+  right: 35px;
+  left: auto;
 }
 
 .button:hover {
@@ -224,6 +269,27 @@
 
   .heading {
     font-size: 100px;
+  }
+
+  .locationHeading {
+    top: calc(50% - 120px);
+    right: var(--spacing-32);
+    max-width: 350px;
+  }
+
+  /* English version: Left align for tablet */
+  html[dir="ltr"] .locationHeading,
+  html[lang="en"] .locationHeading {
+    right: calc(var(--spacing-32) + 313px);
+    left: auto;
+    font-size: clamp(20px, calc(2vw + 4px), 24px);
+    font-weight: 500;
+  }
+
+  .subtitle {
+    top: calc(50% - 60px);
+    right: var(--spacing-32);
+    max-width: 350px;
   }
 }
 
@@ -298,17 +364,47 @@
     position: relative !important;
     top: auto !important;
     left: auto !important;
+    right: auto !important;
     transform: none !important;
     font-size: clamp(36px, 9vw, 48px);
-    text-align: center;
+    text-align: center !important;
     white-space: normal;
     line-height: 1.2;
     margin: 0 auto;
+  }
+
+  .locationHeading {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    max-width: 100%;
+    text-align: center !important;
+    margin: 0 auto var(--spacing-12) auto !important;
+    font-size: var(--font-regular-l-size);
     z-index: 11;
     width: 100%;
     max-width: 100%;
     opacity: 1 !important;
     color: rgba(255, 255, 255, 0.95);
+  }
+
+  /* English version: Increase size and weight for mobile - but keep center aligned */
+  html[dir="ltr"] .locationHeading,
+  html[lang="en"] .locationHeading {
+    font-size: clamp(20px, calc(4vw + 4px), 24px);
+    font-weight: 500;
+    text-align: center !important;
+    left: auto !important;
+    right: auto !important;
+  }
+
+  /* Arabic version: Keep center aligned on mobile */
+  html[dir="rtl"] .locationHeading,
+  html[lang="ar"] .locationHeading {
+    text-align: center !important;
+    left: auto !important;
+    right: auto !important;
   }
 
   .subtitle {
@@ -317,7 +413,7 @@
     right: auto !important;
     left: auto !important;
     max-width: 100%;
-    text-align: center;
+    text-align: center !important;
     font-size: clamp(15px, 4vw, 18px);
     line-height: 1.6;
     margin: 0 auto;
@@ -333,16 +429,16 @@
     right: auto !important;
     left: auto !important;
     transform: none !important;
-    margin: var(--spacing-8) auto 0;
+    margin: var(--spacing-8) auto 0 !important;
     font-size: clamp(15px, 4vw, 18px);
     padding: 16px var(--spacing-32);
     height: 52px;
     width: auto;
     min-width: 200px;
     z-index: 11;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     opacity: 1 !important;
   }
 }

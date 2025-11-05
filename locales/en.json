@@ -1,0 +1,117 @@
+{
+  "header": {
+    "highlights": "Highlights",
+    "whyInvest": "Why Invest",
+    "aboutUs": "About Us",
+    "offerings": "Offerings",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "heading": "REDEFINE LIFESTYLE",
+    "locationHeading": "Uptown - Muscat",
+    "subtitle": "Wujha Muscat is more than a home — it's a vibrant, integrated city in the heart of Knowledge Oasis Muscat. Live, work, and play in harmony, surrounded by nature, tranquility, and the people you love.",
+    "downloadBrochure": "Download Brochure"
+  },
+  "projectHighlights": {
+    "heading": "Project Highlights",
+    "alRusayl": "Al Rusayl Industrial Area",
+    "alMawaleh": "Al Mawaleh - City Center",
+    "exhibition": "Oman International Exhibition",
+    "airport": "Muscat International Airport"
+  },
+  "whyInvest": {
+    "heading": "Why Invest in Uptown Muscat?",
+    "lifestyleTitle": "Lifestyle that Inspires",
+    "lifestyleDescription": "Uptown Muscat is more than a residence - it's a nature-inspired community that sparks creativity. With green spaces, open surroundings, and the lively Uptown Boulevard at its center, it balances work and life. Shops, a social club, playgrounds, and family areas all support convenience, connection, and memorable moments.",
+    "locationTitle": "Strategic Location in Knowledge City",
+    "locationDescription": "Located in Knowledge Oasis Muscat (KOM) - Oman's leading tech park managed by @madaynoman - Uptown sits at the center of the country's digital growth. KOM hosts 200+ companies, from local SMEs and education hubs to global brands, powered by a skilled, multilingual workforce. For residents and investors, it offers direct access to opportunity, innovation, and a thriving knowledge economy.",
+    "reason1": "Reason 1",
+    "reason2": "Reason 2",
+    "registerNow": "Register Interest"
+  },
+  "aboutUs": {
+    "badge": "About Us",
+    "heading": "Why WUJHA?",
+    "paragraph1": "At Wujha, we aspire to go beyond the ordinary.",
+    "paragraph2": "Our vision is to transform urban spaces into sustainable, vibrant destinations that enrich lives and inspire communities. We are committed to building exceptional environments where luxury meets purpose – communities that elevate aspirations, foster harmony, and reflect the highest international standards.",
+    "paragraph3": "Through thoughtfully designed residential spaces, business centers, and integrated developments, Wujha creates more than buildings; we create lifestyles shaped for a brighter future. At the heart of our culture lies a promise to deliver experiences that are not only luxurious but truly enriching – ensuring every project reflects the essence of Wujha's vision.",
+    "registerNow": "Register Interest"
+  },
+  "offerings": {
+    "heading": "Amenities That Elevate Living",
+    "subtitle": "Discover a range of world-class amenities designed to enhance your lifestyle. From fitness and wellness to leisure and entertainment, Uptown Muscat has it all.",
+    "cinema": {
+      "title": "Cinema",
+      "subtitle": "This small private cinema can be fully reserved and seats about 12 VIP guests, plus one large premium sofa."
+    },
+    "pool": {
+      "title": "Pool",
+      "subtitle": "Pool access is on the lower floor beside other sports facilities, with locker rooms and restrooms connected by stairs and elevators."
+    },
+    "gym": {
+      "title": "Gym",
+      "subtitle": "Two gyms are provided—one shared and one for women—each with its own locker room, sauna, and jacuzzi."
+    },
+    "childcare": {
+      "title": "Childcare",
+      "subtitle": "During working hours, children will be taken care of by trained caregivers."
+    },
+    "firstaid": {
+      "title": "First Aid Room",
+      "subtitle": "Located within the sports facility, this area supports quick first aid and has ground-floor parking access for fast transfer to emergency care."
+    },
+    "commercial": {
+      "title": "Commercial Area",
+      "subtitle": "Mix of retail options on the longest boulevard in Muscat."
+    },
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "contactUs": {
+    "heading": "Contact Us",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "phone": "Phone Number",
+      "phonePlaceholder": "Mobile number",
+      "search": "Search",
+      "submit": "Submit",
+      "callUs": "Call Us"
+    },
+  "footer": {
+    "helpSupport": "HELP & SUPPORT",
+    "aboutUs": "ABOUT US",
+    "termsPrivacy": "TERMS & PRIVACY POLICY",
+    "downloadAppStore": "Download on the",
+    "appStore": "App Store",
+    "getItOn": "GET IT ON",
+    "googlePlay": "Google Play",
+    "phoneNumber": "+968-24442682"
+  },
+  "brochureModal": {
+    "title": "Register Interest",
+    "subtitle": "Register to download the brochures now",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Mobile number",
+    "search": "Search",
+    "register": "Register & Download Brochures",
+    "processing": "Processing...",
+    "legalText": "By registering, you agree to our",
+    "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "callModal": {
+    "title": "Contact Us",
+    "getInTouch": "Get in touch with our sales team",
+    "phoneNumber": "+968-24442682",
+    "callToAction": "We're here to help. Call us anytime!"
+  }
+}
+

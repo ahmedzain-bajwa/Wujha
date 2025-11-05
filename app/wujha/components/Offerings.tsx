@@ -2,49 +2,51 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { SectionWrapper } from './shared/SectionWrapper';
 import styles from './Offerings.module.css';
 
-const offerings = [
-  {
-    image: '/assets/offerings/cinema.png',
-    title: 'Cinema',
-    subtitle: 'This small private cinema can be fully reserved and seats about 12 VIP guests, plus one large premium sofa.',
-  },
-  {
-    image: '/assets/offerings/pool.png',
-    title: 'Pool',
-    subtitle: 'Pool access is on the lower floor beside other sports facilities, with locker rooms and restrooms connected by stairs and elevators.',
-  },
-  {
-    image: '/assets/offerings/gym.png',
-    title: 'Gym',
-    subtitle: 'Two gyms are provided—one shared and one for women—each with its own locker room, sauna, and jacuzzi.',
-  },
-  {
-    image: '/assets/offerings/childcare.png',
-    title: 'Childcare',
-    subtitle: 'During working hours, children will be taken care of by trained caregivers.',
-  },
-  {
-    image: '/assets/offerings/firstaid.png',
-    title: 'First Aid Room',
-    subtitle: 'Located within the sports facility, this area supports quick first aid and has ground-floor parking access for fast transfer to emergency care.',
-  },
-  {
-    image: '/assets/offerings/commercial.png',
-    title: 'Commercial Area',
-    subtitle: 'Mix of retail options on the longest boulevard in Muscat.',
-  },
-];
-
 export const Offerings: React.FC = () => {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [cardWidth, setCardWidth] = useState(600);
   const [wrapperWidth, setWrapperWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  
+  const offerings = [
+    {
+      image: '/assets/offerings/cinema.png',
+      title: t('offerings.cinema.title'),
+      subtitle: t('offerings.cinema.subtitle'),
+    },
+    {
+      image: '/assets/offerings/pool.png',
+      title: t('offerings.pool.title'),
+      subtitle: t('offerings.pool.subtitle'),
+    },
+    {
+      image: '/assets/offerings/gym.png',
+      title: t('offerings.gym.title'),
+      subtitle: t('offerings.gym.subtitle'),
+    },
+    {
+      image: '/assets/offerings/childcare.png',
+      title: t('offerings.childcare.title'),
+      subtitle: t('offerings.childcare.subtitle'),
+    },
+    {
+      image: '/assets/offerings/firstaid.png',
+      title: t('offerings.firstaid.title'),
+      subtitle: t('offerings.firstaid.subtitle'),
+    },
+    {
+      image: '/assets/offerings/commercial.png',
+      title: t('offerings.commercial.title'),
+      subtitle: t('offerings.commercial.subtitle'),
+    },
+  ];
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -118,17 +120,17 @@ export const Offerings: React.FC = () => {
             }}
           />
 
-          <h2 className={`h3 ${styles.heading}`}>Amenities That Elevate Living</h2>
+          <h2 className={`h3 ${styles.heading}`}>{t('offerings.heading')}</h2>
 
           <p className={`regular-l ${styles.subtext}`}>
-            Discover a range of world-class amenities designed to enhance your lifestyle. From fitness and wellness to leisure and entertainment, Uptown Muscat has it all.
+            {t('offerings.subtitle')}
           </p>
 
           <div className={styles.carouselContainer}>
             <button
               onClick={prevSlide}
               className={`${styles.carouselButton} ${styles.carouselButtonPrev}`}
-              aria-label="Previous"
+              aria-label={t('offerings.previous')}
               disabled={currentIndex === 0}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -191,7 +193,7 @@ export const Offerings: React.FC = () => {
             <button
               onClick={nextSlide}
               className={`${styles.carouselButton} ${styles.carouselButtonNext}`}
-              aria-label="Next"
+              aria-label={t('offerings.next')}
               disabled={currentIndex === offerings.length - 1}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

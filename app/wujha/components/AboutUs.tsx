@@ -2,10 +2,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { SectionWrapper } from './shared/SectionWrapper';
 import styles from './AboutUs.module.css';
 
-export const AboutUs: React.FC = () => {
+interface AboutUsProps {
+  onRegisterClick: () => void;
+}
+
+export const AboutUs: React.FC<AboutUsProps> = ({ onRegisterClick }) => {
+  const { t } = useLanguage();
+  
   return (
     <SectionWrapper id="about">
       <div className={styles.content}>
@@ -18,16 +25,16 @@ export const AboutUs: React.FC = () => {
         >
           <div className={styles.badge}>
             <span className={styles.starIcon}>★</span>
-            <span>About Us</span>
+            <span>{t('aboutUs.badge')}</span>
           </div>
-          <h2 className={styles.heading}>Why WUJHA?</h2>
+          <h2 className={styles.heading}>{t('aboutUs.heading')}</h2>
           <div className={styles.paragraph}>
-            <p>At Wujha, we aspire to go beyond the ordinary.</p>
-            <p>Our vision is to transform urban spaces into sustainable, vibrant destinations that enrich lives and inspire communities. We are committed to building exceptional environments where luxury meets purpose – communities that elevate aspirations, foster harmony, and reflect the highest international standards.</p>
-            <p>Through thoughtfully designed residential spaces, business centers, and integrated developments, Wujha creates more than buildings; we create lifestyles shaped for a brighter future. At the heart of our culture lies a promise to deliver experiences that are not only luxurious but truly enriching – ensuring every project reflects the essence of Wujha's vision.</p>
+            <p>{t('aboutUs.paragraph1')}</p>
+            <p>{t('aboutUs.paragraph2')}</p>
+            <p>{t('aboutUs.paragraph3')}</p>
           </div>
-          <button className={styles.button}>
-            <span>Register Now</span>
+          <button className={styles.button} onClick={onRegisterClick}>
+            <span>{t('aboutUs.registerNow')}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
