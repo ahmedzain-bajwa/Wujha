@@ -14,7 +14,6 @@ interface CallModalProps {
 export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
   const { t } = useLanguage();
   const [qrCodeDataURL, setQrCodeDataURL] = useState<string>('');
-  const scrollYRef = React.useRef<number>(0);
   
   // Generate QR code with phone number
   useEffect(() => {
@@ -45,79 +44,18 @@ export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
   
   useEffect(() => {
     if (isOpen) {
-      // Store current scroll position BEFORE locking
-      scrollYRef.current = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      // Simple approach: just prevent scrolling with overflow hidden
+      document.body.style.overflow = 'hidden';
       
-      // Prevent body scroll when modal is open
-      const body = document.body;
-      const html = document.documentElement;
-      
-      // Store original styles
-      const originalOverflow = body.style.overflow;
-      const originalPosition = body.style.position;
-      const originalTop = body.style.top;
-      const originalWidth = body.style.width;
-      const originalLeft = body.style.left;
-      const originalRight = body.style.right;
-      
-      body.style.overflow = 'hidden';
-      body.style.position = 'fixed';
-      body.style.top = `-${scrollYRef.current}px`;
-      body.style.width = '100%';
-      body.style.left = '0';
-      body.style.right = '0';
-      
-      // Don't restore here - let onExitComplete handle it after animation
       return () => {
-        // Cleanup will be handled by onExitComplete
+        // Restore scrolling when modal closes
+        document.body.style.overflow = '';
       };
     }
   }, [isOpen]);
-  
-  // Restore scroll after exit animation completes
-  const handleExitComplete = () => {
-    const scrollY = scrollYRef.current;
-    const body = document.body;
-    const html = document.documentElement;
-    
-    // Set scroll position FIRST while body is still fixed (if it still is)
-    // This is critical to prevent jump
-    if (document.scrollingElement) {
-      (document.scrollingElement as HTMLElement).scrollTop = scrollY;
-    }
-    html.scrollTop = scrollY;
-    
-    // Now restore body styles - this will trigger layout
-    body.style.removeProperty('overflow');
-    body.style.removeProperty('position');
-    body.style.removeProperty('top');
-    body.style.removeProperty('width');
-    body.style.removeProperty('left');
-    body.style.removeProperty('right');
-    
-    // Immediately after removing fixed position, set scroll again
-    // This prevents the browser from jumping to top
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top: scrollY,
-        left: 0,
-        behavior: 'auto'
-      });
-      // Set it directly as well for extra insurance
-      html.scrollTop = scrollY;
-      if (document.scrollingElement) {
-        (document.scrollingElement as HTMLElement).scrollTop = scrollY;
-      }
-    });
-  };
-  
-  const handleClose = () => {
-    // Just close the modal - scroll will be restored in handleExitComplete
-    onClose();
-  };
 
   return (
-    <AnimatePresence onExitComplete={handleExitComplete}>
+    <AnimatePresence>
       {isOpen && (
         <motion.div
           className={styles.overlay}
@@ -125,7 +63,7 @@ export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          onClick={handleClose}
+          onClick={onClose}
         >
           <motion.div
             className={styles.modal}
@@ -138,7 +76,7 @@ export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className={styles.header}>
               <h2 className={styles.headerTitle}>{t('callModal.title')}</h2>
-              <button className={styles.closeButton} onClick={handleClose} aria-label="Close modal">
+              <button className={styles.closeButton} onClick={onClose} aria-label="Close modal">
                 ×
               </button>
             </div>

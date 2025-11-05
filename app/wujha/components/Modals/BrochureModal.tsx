@@ -28,7 +28,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const countryButtonRef = React.useRef<HTMLButtonElement>(null);
-  const scrollYRef = React.useRef<number>(0);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const countries = [
     { code: '+968', name: 'Oman', flag: '🇴🇲' },
@@ -66,71 +66,36 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
-      // Store current scroll position BEFORE locking
-      scrollYRef.current = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      // Simple approach: just prevent scrolling with overflow hidden
+      document.body.style.overflow = 'hidden';
       
-      // Prevent body scroll when modal is open
-      const body = document.body;
-      const html = document.documentElement;
-      
-      // Store original styles
-      const originalOverflow = body.style.overflow;
-      const originalPosition = body.style.position;
-      const originalTop = body.style.top;
-      const originalWidth = body.style.width;
-      const originalLeft = body.style.left;
-      const originalRight = body.style.right;
-      
-      body.style.overflow = 'hidden';
-      body.style.position = 'fixed';
-      body.style.top = `-${scrollYRef.current}px`;
-      body.style.width = '100%';
-      body.style.left = '0';
-      body.style.right = '0';
-      
-      // Don't restore here - let onExitComplete handle it after animation
       return () => {
-        // Cleanup will be handled by onExitComplete
+        // Restore scrolling when modal closes
+        document.body.style.overflow = '';
       };
     }
   }, [isOpen]);
-  
-  // Restore scroll after exit animation completes
-  const handleExitComplete = () => {
-    const scrollY = scrollYRef.current;
-    const body = document.body;
-    const html = document.documentElement;
-    
-    // Set scroll position FIRST while body is still fixed (if it still is)
-    // This is critical to prevent jump
-    if (document.scrollingElement) {
-      (document.scrollingElement as HTMLElement).scrollTop = scrollY;
+
+  // Handle dropdown position and click outside
+  useEffect(() => {
+    if (isCountryDropdownOpen) {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          dropdownRef.current &&
+          countryButtonRef.current &&
+          !dropdownRef.current.contains(event.target as Node) &&
+          !countryButtonRef.current.contains(event.target as Node)
+        ) {
+          setIsCountryDropdownOpen(false);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
     }
-    html.scrollTop = scrollY;
-    
-    // Now restore body styles - this will trigger layout
-    body.style.removeProperty('overflow');
-    body.style.removeProperty('position');
-    body.style.removeProperty('top');
-    body.style.removeProperty('width');
-    body.style.removeProperty('left');
-    body.style.removeProperty('right');
-    
-    // Immediately after removing fixed position, set scroll again
-    // This prevents the browser from jumping to top
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top: scrollY,
-        left: 0,
-        behavior: 'auto'
-      });
-      // Set it directly as well for extra insurance
-      html.scrollTop = scrollY;
-      if (document.scrollingElement) {
-        (document.scrollingElement as HTMLElement).scrollTop = scrollY;
-      }
-    });
-  };
+  }, [isCountryDropdownOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -174,7 +139,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
   };
 
   return (
-    <AnimatePresence onExitComplete={handleExitComplete}>
+    <AnimatePresence>
       {isOpen && (
         <motion.div
           className={styles.overlay}
@@ -294,6 +259,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
                         </button>
                         {isCountryDropdownOpen && (
                           <div 
+                            ref={dropdownRef}
                             className={styles.customDropdown}
                             style={{
                               top: `${dropdownPosition.top}px`,
